@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
-	
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.porto.controller.PortoController">
-	<!-- TODO Add Nodes -->
+
+
+<BorderPane prefHeight="353.0" prefWidth="464.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="it.polito.tdp.porto.controller.PortoController">
+   <top>
+      <Label prefHeight="37.0" prefWidth="84.0" text="Laboratorio n. 9" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="41.0" prefWidth="305.0" spacing="20.0">
+               <children>
+                  <ComboBox fx:id="comboPrimo" prefWidth="150.0" promptText="primo autore" />
+                  <ComboBox fx:id="comboSecondo" prefWidth="150.0" promptText="secondo autore" />
+               </children>
+            </HBox>
+            <HBox prefHeight="37.0" prefWidth="305.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnCoautori" mnemonicParsing="false" onAction="#doCoautori" prefHeight="25.0" prefWidth="137.0" text="Visualizza Coautori" />
+                  <Button fx:id="btnCluster" mnemonicParsing="false" onAction="#doCluster" prefHeight="25.0" prefWidth="168.0" text="Visualizza Cluster" />
+                  <Button fx:id="btnArticoli" mnemonicParsing="false" onAction="#doArticoli" prefHeight="25.0" prefWidth="129.0" text="Visualizza Articoli" />
+               </children>
+            </HBox>
+            <TextArea fx:id="txtResult" editable="false" prefHeight="254.0" prefWidth="305.0" />
+         </children>
+      </VBox>
+   </center>
 </BorderPane>
