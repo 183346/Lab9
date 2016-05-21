@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
+import it.polito.tdp.porto.bean.Article;
 import it.polito.tdp.porto.bean.Creator;
 
 public class PortoDAO {
@@ -80,5 +78,39 @@ final String sql = "select  distinct id_creator from authorship where eprintid i
 		
 		return coautori ;
 	}
+
+	public List<Article> getArticlePerAutore(int matricola) {
+		
+final String sql = "SELECT distinct aa.eprintid, aa.year, aa.title from authorship a, article aa where id_creator=? and a.eprintid=aa.eprintid" ;
+		
+		List<Article> articoli = new ArrayList<Article>() ;
+		
+		Connection conn = DBConnect.getConnection() ;
+		try {
+			
+			
+			PreparedStatement st = conn.prepareStatement(sql) ;
+			st.setInt(1, matricola);
+			ResultSet rs = st.executeQuery() ;
+			
+			while( rs.next() ) {
+				Article articolo = new Article(
+						rs.getInt("eprintid"),
+						rs.getInt("year"),
+						rs.getString("title") ) ;
+				articoli.add(articolo) ;
+			}
+						
+			st.close() ;
+			conn.close();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e) ;
+		}
+		
+		return articoli ;
+	}
+
 	
 }

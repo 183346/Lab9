@@ -29,10 +29,7 @@ public class PortoController {
 		creators=dao.getAllCreators();
 		this.comboPrimo.getItems().addAll(creators);
 		this.comboSecondo.getItems().addAll(creators);
-		
-		
-    	
-    	this.model = model;
+	   	this.model = model;
 	}
 
 	@FXML // ResourceBundle that was given to the FXMLLoader
@@ -72,8 +69,7 @@ public class PortoController {
     @FXML
     void doCluster(ActionEvent event) {
     	this.txtResult.clear();
-    	
-    		String result=model.cercaCluster();
+      		String result=model.cercaCluster();
     		if(result.compareTo("")==0){this.txtResult.appendText("nessun risultato");return;}
     		this.txtResult.appendText(result);
     	    
@@ -83,6 +79,12 @@ public class PortoController {
 
     @FXML
     void doArticoli(ActionEvent event) {
+    	this.txtResult.clear();
+    	if(this.comboPrimo.getValue()!=null && this.comboSecondo.getValue()!=null && this.comboPrimo.getValue()!=this.comboSecondo.getValue()){
+  		String result=model.cercaArticoli(this.comboPrimo.getValue(),this.comboSecondo.getValue());
+		if(result.compareTo("")==0){this.txtResult.appendText("nessun risultato");return;}
+		this.txtResult.appendText(result);
+    	}else{this.txtResult.appendText("introdurre due autori diversi non coautori");return;}
 
     }
 
